@@ -1,1 +1,1 @@
-export { defout } from "./movie";
+export { default } from "./movie";

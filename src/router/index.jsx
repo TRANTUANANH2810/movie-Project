@@ -1,52 +1,59 @@
-import { createBrowserRouter, Navigate, Link } from "react-router-dom";
 import { lazy, Suspense } from "react";
-// import Movie from "../atomic/pages/movie/movie";
+import { createBrowserRouter, Link, Navigate } from "react-router-dom";
+import { UserTemplate } from "../atomic/templates/user";
 
-// import Anime from "../atomic/pages/anime/anime";
+// import Movie from "../atomic/pages/movie";
+// import Anime from "../atomic/pages/anime";
 
-// ?lazy load
-const Movie = lazy(() => import("../atomic/pages/movie/movie"));
-const Anime = lazy(() => import("../atomic/pages/anime/anime"));
+// Lazy load
+const Movie = lazy(() => import("../atomic/pages/movie"));
+const Anime = lazy(() => import("../atomic/pages/anime"));
+
 export const router = createBrowserRouter([
 	{
 		path: "/",
 		element: (
 			<div>
-				<h1>Hello World</h1>
-				<Link to="movie">Movie</Link>
-				<Link to="anime">Anime</Link>
+				<UserTemplate>
+					<h1>Hello Cyber</h1>
+					<Link to="movie">Movie</Link>
+					<Link to="anime">Anime</Link>
+				</UserTemplate>
 			</div>
 		),
 	},
-	{
-		path: "about",
-		element: <div>About</div>,
-	},
+
 	{
 		path: "movie",
 		element: (
-			// suspen doi page tai xong r moisw sd de render
-			// fallback render tam thoi khi page chua tai xong
-			<Suspense fallback={<>Loadding...</>}>
+			// Đợi page của chúng ta tải xong rồi mới sử dụng để render.
+			// fallback: render tạm thời khi page chưa tải xong
+			<Suspense fallback={<>Loading....</>}>
 				<Movie />
 			</Suspense>
 		),
 	},
+
 	{
 		path: "tv-series",
-		element: <div>tv-series</div>,
+		element: <>tv-series</>,
 	},
+
 	{
 		path: "anime",
 		element: (
-			<Suspense>
+			<Suspense fallback={<>Loading....</>}>
 				<Anime />
 			</Suspense>
 		),
 	},
+
 	{
 		path: "*",
-		// element: <div>Not Found</div>,
-		element: <Navigate to={"/"} replace={true} />,
+		// C1: Custom Page Not Found
+		// element: <>Not Found</>,
+
+		// C2: Mong muốn chuyển về trang home
+		element: <Navigate to={"/"} replace />,
 	},
 ]);

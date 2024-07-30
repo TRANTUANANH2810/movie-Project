@@ -1,1 +1,1 @@
-export { defout } from "./anime";
+export { default } from "./anime";
