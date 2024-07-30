@@ -1,5 +1,3 @@
-import * as React from "react";
-import { createRoot } from "react-dom/client";
 import {
 	createBrowserRouter,
 	RouterProvider,
@@ -7,7 +5,7 @@ import {
 	Link,
 } from "react-router-dom";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
 	{
 		path: "/",
 		element: (

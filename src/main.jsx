@@ -4,7 +4,7 @@ import App from "./App.jsx";
 
 // router
 import { RouterProvider } from "react-router-dom";
-import { Route } from "react-router-dom";
+import { router } from "./router";
 
 import "./config/style/tailwind.css";
 import "./config/style/modern-normalize.css";
@@ -12,6 +12,6 @@ import "./config/style/font-family.css";
 import "./config/style/main.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider Route={Route} />
+		<RouterProvider router={router} />
 	</React.StrictMode>,
 );
